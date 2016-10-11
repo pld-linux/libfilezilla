@@ -6,12 +6,12 @@
 Summary:	libfilezilla
 Summary(pl.UTF-8):	libfilezilla
 Name:		libfilezilla
-Version:	0.6.1
+Version:	0.7.1
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/filezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	3d4728ce8949490b09198443e955c8b6
+# Source0-md5:	3e4765e085703a8f2dd076ac2cd1f84a
 URL:		http://lib.filezilla-project.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 1.583
