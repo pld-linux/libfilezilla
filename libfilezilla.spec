@@ -1,19 +1,26 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-%bcond_without	static_libs	# don't build static libraries
+%bcond_without	apidocs		# doxygen API documentation
+%bcond_without	static_libs	# static library
+%bcond_without	tests		# "make check"
 #
-Summary:	libfilezilla
-Summary(pl.UTF-8):	libfilezilla
+Summary:	Library for high-performing platform-independent programs
+Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.9.0
+Version:	0.9.1
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	9c3e6d63427855b4f78f85b78933996c
+# Source0-md5:	4676304b048869ab6ac6ae09a1ab29f9
 URL:		http://lib.filezilla-project.org/
-BuildRequires:	libstdc++-devel
+%{?with_tests:BuildRequires:	cppunit-devel >= 1.10.2}
+%{?with_apidocs:BuildRequires:	doxygen}
+%if %{with tests} && %(locale -a | grep -q '^C\.UTF-8$'; echo $?)
+BuildRequires:	glibc-localedb-all
+%endif
+# -std=c++14
+BuildRequires:	libstdc++-devel >= 6:5
 BuildRequires:	rpmbuild(macros) >= 1.583
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -31,31 +38,43 @@ Some of the highlights include:
 - Simple process handling for spawning child processes with redirected
   I/O
 
-#%description -l pl.UTF-8
+%description -l pl.UTF-8
+libfilezilla to wolnodostępna biblioteka C++ o otwartych źródłach,
+oferująca pewną podstawową funkcjonalność do tworzenia wydajnych
+programów niezależnych od platformy. Uwzględnione funkcje obejmują:
+- bezpieczny pod względem typów, wielowątkowy system zdarzeń -
+  bardzo prosty w użyciu, a jednocześnie bardzo wydajny
+- zegary do zdarzeń regularnych
+- klasa daty i czasu nie tylko śledząca znacznik czasu, ale także jego
+  dokładność, co upraszcza obsługę znaczników czasu pochodzących z
+  różnych źródeł
+- prostą obsługę procesów do tworzenia procesów potomnych z
+  przekierowanym wejściem/wyjściem
 
 %package devel
-Summary:	Header files for %{name} library
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki %{name}
+Summary:	Header files for libfilezilla library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libfilezilla
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel >= 6:5
 
 %description devel
-Header files for %{name} library.
+Header files for libfilezilla library.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe biblioteki %{name}.
+Pliki nagłówkowe biblioteki libfilezilla.
 
 %package static
-Summary:	Static %{name} library
-Summary(pl.UTF-8):	Statyczna biblioteka %{name}
+Summary:	Static libfilezilla library
+Summary(pl.UTF-8):	Statyczna biblioteka libfilezilla
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static %{name} library.
+Static libfilezilla library.
 
 %description static -l pl.UTF-8
-Statyczna biblioteka %{name}.
+Statyczna biblioteka libfilezilla.
 
 %package apidocs
 Summary:	%{name} API documentation
@@ -76,6 +95,16 @@ Dokumentacja API biblioteki %{name}.
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
+%if %{with tests}
+# wide char conversion test fails with plain C locale
+LC_ALL=C.UTF-8 \
+%{__make} check
+%endif
+
+%if %{with apidocs}
+%{__make} -C doc html
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
@@ -92,24 +121,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
-%attr(755,root,root) %{_libdir}/%{name}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/%{name}.so.0
+%doc AUTHORS ChangeLog NEWS README
+%attr(755,root,root) %{_libdir}/libfilezilla.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}.so
-%{_includedir}/%{name}
-%{_pkgconfigdir}/%{name}.pc
+%attr(755,root,root) %{_libdir}/libfilezilla.so
+%{_includedir}/libfilezilla
+%{_pkgconfigdir}/libfilezilla.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/%{name}.a
+%{_libdir}/libfilezilla.a
 %endif
 
-%if 0
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%doc doc/*
+%doc doc/doxygen-doc/html/*
 %endif
