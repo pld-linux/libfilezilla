@@ -8,12 +8,13 @@ Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
 Version:	0.9.2
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
 # Source0-md5:	d52a0e7229efb3c9fafc8a2b649d665d
 Patch0:		cppunit-pkgconfig.patch
+Patch1:		random_bytes.patch
 URL:		http://lib.filezilla-project.org/
 %{?with_tests:BuildRequires:	cppunit-devel >= 1.10.2}
 %{?with_apidocs:BuildRequires:	doxygen}
@@ -95,6 +96,7 @@ Dokumentacja API biblioteki %{name}.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
