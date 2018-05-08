@@ -7,12 +7,12 @@
 Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.12.1
+Version:	0.12.2
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	00926f30483eaebf45c0bb064ef0f84f
+# Source0-md5:	79c95ee58bc8db2fa3690a36ece25a6d
 URL:		http://lib.filezilla-project.org/
 %{?with_tests:BuildRequires:	cppunit-devel >= 1.10.2}
 %{?with_apidocs:BuildRequires:	doxygen}
