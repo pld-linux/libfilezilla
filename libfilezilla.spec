@@ -16,7 +16,7 @@ Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.
 URL:		https://lib.filezilla-project.org/
 %{?with_tests:BuildRequires:	cppunit-devel >= 1.13.0}
 %{?with_apidocs:BuildRequires:	doxygen}
-%if %{with tests} && %(locale -a | grep -q '^C\.UTF-8$'; echo $?)
+%if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 BuildRequires:	autoconf >= 2.50
