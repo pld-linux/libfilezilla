@@ -7,14 +7,14 @@
 Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.14.0
+Version:	0.15.1
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	b4d4b90a9338d4e284a18839a148cc27
+# Source0-md5:	a8c6f02999c635c506830a3d512ddf14
 URL:		https://lib.filezilla-project.org/
-%{?with_tests:BuildRequires:	cppunit-devel >= 1.10.2}
+%{?with_tests:BuildRequires:	cppunit-devel >= 1.13.0}
 %{?with_apidocs:BuildRequires:	doxygen}
 %if %{with tests} && %(locale -a | grep -q '^C\.UTF-8$'; echo $?)
 BuildRequires:	glibc-localedb-all
@@ -22,6 +22,7 @@ BuildRequires:	glibc-localedb-all
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	libtool >= 2:2
+BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig >= 1:0.7
 # -std=c++14
 BuildRequires:	libstdc++-devel >= 6:5
