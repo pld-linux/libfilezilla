@@ -8,7 +8,7 @@ Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
 Version:	0.17.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
@@ -96,6 +96,33 @@ Dokumentacja API biblioteki %{name}.
 %prep
 %setup -q
 
+cd locales
+%{__mv} bg{_BG,}.po
+%{__mv} ca{_ES,}@valencia.po
+%{__mv} cs{_CZ,}.po
+%{__mv} fa{_IR,}.po
+%{__mv} fi{_FI,}.po
+%{__mv} gl{_ES,}.po
+%{__mv} he{_IL,}.po
+%{__mv} hu{_HU,}.po
+%{__mv} id{_ID,}.po
+%{__mv} ja{_JP,}.po
+%{__mv} ko{_KR,}.po
+%{__mv} lo{_LA,}.po
+%{__mv} lt{_LT,}.po
+%{__mv} lv{_LV,}.po
+%{__mv} mk{_MK,}.po
+%{__mv} nb{_NO,}.po
+%{__mv} nn{_NO,}.po
+%{__mv} pl{_PL,}.po
+%{__mv} pt{_PT,}.po
+%{__mv} ro{_RO,}.po
+%{__mv} sk{_SK,}.po
+%{__mv} sl{_SI,}.po
+%{__mv} th{_TH,}.po
+%{__mv} uk{_UA,}.po
+%{__mv} vi{_VN,}.po
+
 %build
 %{__libtoolize}
 %{__aclocal} -I m4
@@ -123,6 +150,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
+# not supported by glibc (as of 2.25)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/co
 
 %find_lang %{name}
 
