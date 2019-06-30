@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
 Version:	0.17.1
 Release:	2
-License:	GPL v2
+License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
 # Source0-md5:	7cecda7c08f141223076487490374cb5
@@ -64,6 +64,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libfilezilla
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libstdc++-devel >= 6:7
+Requires:	gnutls-devel >= 3.5.7
+Requires:	nettle-devel >= 3.1
 
 %description devel
 Header files for libfilezilla library.
