@@ -21,12 +21,13 @@ BuildRequires:	glibc-localedb-all
 %endif
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+BuildRequires:	gettext-tools >= 0.11.0
 BuildRequires:	gnutls-devel >= 3.5.7
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.1
 BuildRequires:	pkgconfig >= 1:0.7
-# -std=c++14
-BuildRequires:	libstdc++-devel >= 6:5
+# -std=c++17
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	rpmbuild(macros) >= 1.583
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -62,7 +63,7 @@ Summary:	Header files for libfilezilla library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libfilezilla
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libstdc++-devel >= 6:5
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Header files for libfilezilla library.
