@@ -7,27 +7,27 @@
 Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.21.0
+Version:	0.25.0
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	40b8f122e43b640cb9e6597fb1b1081a
+# Source0-md5:	c4592f37dacb03e22509d965dbf188cd
 URL:		https://lib.filezilla-project.org/
-%{?with_tests:BuildRequires:	cppunit-devel >= 1.13.0}
-%{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+%{?with_tests:BuildRequires:	cppunit-devel >= 1.13.0}
+%{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	gettext-tools >= 0.11.0
 %if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 BuildRequires:	gnutls-devel >= 3.5.8
+# -std=c++17
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.3
 BuildRequires:	pkgconfig >= 1:0.7
-# -std=c++17
-BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	rpmbuild(macros) >= 1.583
 Requires:	gnutls-libs >= 3.5.8
 Requires:	nettle >= 3.3
@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libfilezilla.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.6
+%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.10
 
 %files devel
 %defattr(644,root,root,755)
