@@ -7,12 +7,12 @@
 Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.27.1
+Version:	0.28.0
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	5c789021d687d483ee90ffae8433880f
+# Source0-md5:	934d6a5e7ae5bb339fc46aa29223a74f
 URL:		https://lib.filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libfilezilla.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.12
+%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.13
 
 %files devel
 %defattr(644,root,root,755)
