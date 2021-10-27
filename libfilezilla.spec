@@ -173,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libfilezilla.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.{%libver}
+%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.%{libver}
 
 %files devel
 %defattr(644,root,root,755)
