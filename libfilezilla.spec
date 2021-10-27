@@ -24,14 +24,15 @@ BuildRequires:	gettext-tools >= 0.11.0
 %if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
-BuildRequires:	gnutls-devel >= 3.5.8
+BuildRequires:	gmp-devel
+BuildRequires:	gnutls-devel >= 3.7.0
 # -std=c++17
 BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:2
 BuildRequires:	nettle-devel >= 3.3
 BuildRequires:	pkgconfig >= 1:0.7
 BuildRequires:	rpmbuild(macros) >= 1.583
-Requires:	gnutls-libs >= 3.5.8
+Requires:	gnutls-libs >= 3.7.0
 Requires:	nettle >= 3.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,7 +68,7 @@ Summary:	Header files for libfilezilla library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libfilezilla
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gnutls-devel >= 3.5.8
+Requires:	gnutls-devel >= 3.7.0
 Requires:	libstdc++-devel >= 6:7
 Requires:	nettle-devel >= 3.3
 
