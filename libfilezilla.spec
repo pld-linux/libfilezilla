@@ -4,15 +4,17 @@
 %bcond_without	static_libs	# static library
 %bcond_without	tests		# "make check"
 #
+%define		libver	22
+#
 Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.31.1
+Version:	0.34.2
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	a6e3157655e285410e6d12c7c76f0f26
+# Source0-md5:	c5cbaafcbf0fb307e30a59cb38a4b98d
 URL:		https://lib.filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -51,8 +53,8 @@ Some of the highlights include:
 libfilezilla to wolnodostępna biblioteka C++ o otwartych źródłach,
 oferująca pewną podstawową funkcjonalność do tworzenia wydajnych
 programów niezależnych od platformy. Uwzględnione funkcje obejmują:
-- bezpieczny pod względem typów, wielowątkowy system zdarzeń -
-  bardzo prosty w użyciu, a jednocześnie bardzo wydajny
+- bezpieczny pod względem typów, wielowątkowy system zdarzeń - bardzo
+  prosty w użyciu, a jednocześnie bardzo wydajny
 - zegary do zdarzeń regularnych
 - klasa daty i czasu nie tylko śledząca znacznik czasu, ale także jego
   dokładność, co upraszcza obsługę znaczników czasu pochodzących z
@@ -65,8 +67,8 @@ Summary:	Header files for libfilezilla library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libfilezilla
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libstdc++-devel >= 6:7
 Requires:	gnutls-devel >= 3.5.8
+Requires:	libstdc++-devel >= 6:7
 Requires:	nettle-devel >= 3.3
 
 %description devel
@@ -171,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libfilezilla.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.16
+%attr(755,root,root) %ghost %{_libdir}/libfilezilla.so.{%libver}
 
 %files devel
 %defattr(644,root,root,755)
