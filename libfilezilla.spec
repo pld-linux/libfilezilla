@@ -4,17 +4,17 @@
 %bcond_without	static_libs	# static library
 %bcond_without	tests		# "make check"
 #
-%define		libver	22
+%define		libver	23
 #
 Summary:	Library for high-performing platform-independent programs
 Summary(pl.UTF-8):	Biblioteka do wydajnych programów niezależnych od platformy
 Name:		libfilezilla
-Version:	0.34.2
+Version:	0.35.0
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.filezilla-project.org/libfilezilla/%{name}-%{version}.tar.bz2
-# Source0-md5:	c5cbaafcbf0fb307e30a59cb38a4b98d
+# Source0-md5:	136db5d44d5163da88658e0f97972b9f
 URL:		https://lib.filezilla-project.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
